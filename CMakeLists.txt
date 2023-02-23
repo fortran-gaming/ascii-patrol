@@ -30,9 +30,10 @@ conf.cpp gameover.cpp inter.cpp
 twister.cpp game.cpp temp.cpp menu.cpp assets.cpp
 )
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "(Clang|GNU)")
-  target_compile_options(asciipat PRIVATE -Wno-multichar)
-endif()
+target_compile_options(asciipat PRIVATE
+"$<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:-Wno-multichar>"
+"$<$<CXX_COMPILER_ID:AppleClang>:-Wno-deprecated-declarations>"
+)
 
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
